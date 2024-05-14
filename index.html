@@ -4,13 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
+    <link rel="stylesheet" href="index.css" >
+    <title>Movie Watchlist</title>
 </head>
 
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a basic HTML boilerplate.</p>
+    <header>
+        <h1 class="header-element">Find your film</h1>
+        <a class="buttons" href="watchlist.html" >My Watchlist</a>
+    </header>
+    <main>
+        <input id="index-search-input" type="text" placeholder="Movie name">
+        <button class="buttons" id="search-button">Search</button>
+        <div id="index-movie-display">
+
+        </div>
+    </main>
 
 </body>
-
+    <script src="index.js"></script>
 </html>

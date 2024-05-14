@@ -1,0 +1,100 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url(images/header-background.avif);
+    background-size: cover;
+}
+
+header h1 {
+    margin: .5em 0 .25em 0;
+    background-image: radial-gradient(100% 100% at 100% 0, #107896 0, #0e6179 100%);
+    color: #ffffff;
+    border: 3px solid black;
+    padding: .5em;
+    text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;;
+}
+
+.buttons {
+    font-weight: bold;
+    margin-bottom: 1em;
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #143741 0, #053846 100%);
+    border: 4px solid rgb(1, 3, 19);
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+main {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+main input {
+    width: 60%;
+    height: 25px;
+    padding: .25em .5em;
+    border: 1px solid black;
+}
+
+main .buttons {
+    width: 30%;
+    height: 40px;
+}
+
+#index-movie-display {
+    display: flex;
+    gap: 1em;
+    font-size: 1rem;
+    border: 1px dotted red;
+    width: 90%;
+}
+
+#movie-poster {
+    max-width: 100%;
+    height: auto;
+}
+
+#movie-details {
+    border: 1px dotted red;
+}
+
+#movie-details > * {
+    margin: 0;
+}
+
+#movie-title {
+    font-size: 1.3rem;
+}
