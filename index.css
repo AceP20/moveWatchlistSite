@@ -1,6 +1,8 @@
 html, body {
     margin: 0;
     padding: 0;
+    min-width: 350px;
+    background-color: #57abc2;
 }
 
 header {
@@ -74,27 +76,37 @@ main .buttons {
     height: 40px;
 }
 
-#index-movie-display {
-    display: flex;
-    gap: 1em;
+main .individual-movie-section .buttons{
+    width: 60%;
     font-size: 1rem;
-    border: 1px dotted red;
-    width: 90%;
+    height: 25px;
+    margin: .5em 0;
+    box-shadow: none;
 }
 
-#movie-poster {
-    max-width: 100%;
-    height: auto;
+#index-movie-display{
+    width: 95%;
+    height: 100vh;
 }
 
-#movie-details {
-    border: 1px dotted red;
+.individual-movie-section {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 1em;
+    border: 3px solid black;
+    border-radius: 5px;
 }
 
-#movie-details > * {
+.movie-poster {
+    width: 120px;
+    margin-right: 1em;
+}
+
+.movie-details > * {
     margin: 0;
 }
 
-#movie-title {
+.movie-title {
     font-size: 1.3rem;
 }
+
