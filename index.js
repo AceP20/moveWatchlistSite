@@ -17,20 +17,22 @@ FUNCTIONS
 const getMovies = async () => {
     if (indexSearchInput != "") {
         try {
-            const res = await fetch(`http://www.omdbapi.com/?apikey=6bc2ab8f&s=${indexSearchInput.value}`)
+            const res = await fetch(`http://www.omdbapi.com/?apikey=6bc2ab8f&s=${indexSearchInput.value}&type=movie`)
             const data = await res.json()
 
             //list movie result imdb IDs for later reference
             const moviesIDArray = []
             data.Search.forEach(movie => moviesIDArray.push(movie.imdbID))
+            moviesIDArray.pop()
 
             //grab the movie detail objects and put into its own array
             const movieDetailsArr = []
             for (currentMovie in moviesIDArray) {
-                const response = await fetch(`http://www.omdbapi.com/?apikey=6bc2ab8f&i=${moviesIDArray[currentMovie]}`)
+                const response = await fetch(`http://www.omdbapi.com/?apikey=6bc2ab8f&i=${moviesIDArray[currentMovie]}&type=movie`)
                 movieDetailsArr.push(await response.json())
             }
 
+            console.log(indexMovieDisplay)
             renderMovies(movieDetailsArr, indexMovieDisplay)
 
         } catch (error) {
@@ -53,7 +55,7 @@ renderMovies = (movieObjectArr, page) => {
         <img class="movie-poster" src="${movieObjectArr[i].Poster}" >
         <div id=${movieObjectArr[i].imdbID} class="movie-details">
         <h3 class="movie-title">${movieObjectArr[i].Title} </h3> 
-        <p class="movie-review"><i class="fa-regular fa-star fa-small"></i>${movieObjectArr[i].Ratings[0].Value}</p>
+        <p class="movie-review"><i class="fa-regular fa-star fa-small"></i>${movieObjectArr[i].imdbRating}</p>
         <p class="movie-length">${movieObjectArr[i].Runtime}</p>
         <p class="movie-genre">${movieObjectArr[i].Genre}</p>
         <button class="buttons add-to-watchlist" 
@@ -66,6 +68,7 @@ renderMovies = (movieObjectArr, page) => {
         </div>
         `)
     }
+
     page.innerHTML = moviesHtml
     updateWatchlistButton()
 }
@@ -96,11 +99,11 @@ function checkIfAdded(movieId) {
 //adds to local storage for future reference on watchlist page
 updateWatchlist = (movieDetailsStr, onWatchlist) => {
     const movieDetailsObj = JSON.parse(movieDetailsStr)
-    if(onWatchlist === "false"){
+    if (onWatchlist === "false") {
         localStorage.setItem(movieDetailsObj.imdbID, movieDetailsStr)
         updateWatchlistButton()
         renderPersonalWatchlist()
-    } else if(onWatchlist === "true") {
+    } else if (onWatchlist === "true") {
         localStorage.removeItem(movieDetailsObj.imdbID)
         updateWatchlistButton()
         renderPersonalWatchlist()
@@ -127,17 +130,17 @@ document.addEventListener("click", (e) => {
 
     //runs function that saves a stringified movie object to local storage
     if (e.target.classList.contains("add-to-watchlist")) {
-            if(e.target.dataset.onWatchlist === "false"){
-                updateWatchlist(e.target.dataset.movieDetails, e.target.dataset.onWatchlist)
-            } else if(e.target.dataset.onWatchlist === "true"){
-                updateWatchlist(e.target.dataset.movieDetails, e.target.dataset.onWatchlist)
-            }
+        if (e.target.dataset.onWatchlist === "false") {
+            updateWatchlist(e.target.dataset.movieDetails, e.target.dataset.onWatchlist)
+        } else if (e.target.dataset.onWatchlist === "true") {
+            updateWatchlist(e.target.dataset.movieDetails, e.target.dataset.onWatchlist)
+        }
 
     }
 })
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname === "/watchlist.html"){
+    if (window.location.pathname === "/watchlist.html") {
         renderPersonalWatchlist()
     }
 })

@@ -1,8 +1,13 @@
+/*****
+MOBILE FIRST DESIGN
+*****/
+
 html, body {
     margin: 0;
     padding: 0;
     min-width: 350px;
     background-color: #57abc2;
+    cursor: default;
 }
 
 header {
@@ -57,7 +62,7 @@ header h1 {
 }
 
 main {
-    margin-top: 1em;
+    margin: 1em .5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,6 +79,10 @@ main input {
 main .buttons {
     width: 30%;
     height: 40px;
+}
+
+.add-to-watchlist {
+    max-width: 200px;
 }
 
 main .individual-movie-section .buttons{
@@ -110,3 +119,38 @@ main .individual-movie-section .buttons{
     font-size: 1.3rem;
 }
 
+/****
+MEDIA QUIERIES
+****/
+
+@media (min-width: 992px) {
+
+    main input {
+        width: 30%;
+        font-size: large;
+    }
+
+    #search-button {
+        width: 20%;
+    }
+
+    .individual-movie-section {
+        width: 30%;
+        height: 250px;
+    }
+
+    .add-to-watchlist {
+        min-width: 125px;
+    }
+    
+    #index-movie-display , #watchlist-movie-display{
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    main {
+        margin-bottom: 50px;
+    }
+}
